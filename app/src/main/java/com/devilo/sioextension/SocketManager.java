@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -42,6 +45,7 @@ public class SocketManager implements SocketEvent, SocketListener {
         getSocketIp();
     }
 
+
     public SocketManager(Context activity, SocketCallBack callBack, String ip) {
         this.callBack = callBack;
         this.context = activity;
@@ -71,7 +75,6 @@ public class SocketManager implements SocketEvent, SocketListener {
             try {
                 mSocket.on((String) event.get(null), this);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -132,6 +135,7 @@ public class SocketManager implements SocketEvent, SocketListener {
         @Override
         public void call(Object... args) {
             Log.d("SOCKET MANAGER", "DISCONNECTED");
+            isConnected = false;
             invokeCallBack(Socket.EVENT_DISCONNECT, args);
         }
     };
@@ -148,8 +152,10 @@ public class SocketManager implements SocketEvent, SocketListener {
     }
 
 
-    public void send(Object message, String eventName) {
+    public void send(HashMap<String, String> map, String eventName) {
+        JSONObject message = new JSONObject(map);
         boolean hasEventName = false;
+        //TODO Need Check if it is need
         Field[] events = SocketEvent.class.getFields();
         for (Field event : events) {
             try {

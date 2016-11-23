@@ -6,7 +6,7 @@ public interface SocketEvent {
 
     String EVENT_NEW_MESSAGE = "new_message";
     String EVENT_CREATE_USER = "add_user";
-    String EVENT_SUCCESS_USER_ADDED = "usercreated";
+    String EVENT_CREATE_USER_ACK = "usercreated";
     String EVENT_USER_JOINED = "user joined";
     String EVENT_HEARTBEAT = "Heartbeat";
     String EVENT_MESSAGE_RES = "MessageRes";
