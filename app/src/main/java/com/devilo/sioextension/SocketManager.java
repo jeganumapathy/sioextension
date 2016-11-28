@@ -32,7 +32,6 @@ public class SocketManager implements SocketEvent, SocketListener {
     private static Socket mSocket;
     private ArrayList<Emitter.Listener> listener;
 
-
     public static interface SocketCallBack {
         void onSuccessListener(String eventName, Object response);
     }
@@ -95,7 +94,7 @@ public class SocketManager implements SocketEvent, SocketListener {
         Map<String, Object> map = parser.parse(args);
         Object object = map.get(JSONSchema.TAG_EVENT_NAME);
         invokeCallBack(object.toString(), map);
-        Log.d("SOCKET MANAGER", "CALL BACK" + object.toString());
+        Log.d("SOCKET MANAGER", "CALL BACK");
     }
 
 
@@ -104,8 +103,8 @@ public class SocketManager implements SocketEvent, SocketListener {
         try {
             Log.d("SOCKET MANAGER", "connecting to socket");
             if (!mSocket.connected()) {
-                mSocket.off();
-                mSocket.on(Socket.EVENT_CONNECT, onConnectMessage);
+                    mSocket.off();
+                    mSocket.on(Socket.EVENT_CONNECT, onConnectMessage);
                 mSocket.on(Socket.EVENT_DISCONNECT, onDisconnectMessage);
                 mSocket.connect();
             }
@@ -154,23 +153,6 @@ public class SocketManager implements SocketEvent, SocketListener {
 
     public void send(HashMap<String, String> map, String eventName) {
         JSONObject message = new JSONObject(map);
-        boolean hasEventName = false;
-        //TODO Need Check if it is need
-        Field[] events = SocketEvent.class.getFields();
-        for (Field event : events) {
-            try {
-                String mEventName = (String) event.get(null);
-                if (mEventName.equalsIgnoreCase(eventName)) {
-                    hasEventName = true;
-                    break;
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        if (!hasEventName) {
-            throw new RuntimeException("NO EVENT WITH THE NAME :" + eventName + " EXIST");
-        }
         mSocket.emit(eventName, message);
     }
 

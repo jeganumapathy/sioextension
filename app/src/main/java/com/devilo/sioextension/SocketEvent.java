@@ -31,5 +31,8 @@ public interface SocketEvent {
     String EVENT_QR_DATA = "qrdata";
     String ROOM_STRING = "room";
 
+    String EVENT_PING = "ping";
+    String PONG = "pong";
+
 
 }

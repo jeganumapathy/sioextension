@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
  */
 public class SocketService extends Service {
     SocketManager manager;
-    String ip = "http://192.168.0.15:3000/user";
+    String ip = "http://192.168.0.68:3000/user";
 
     @Nullable
     @Override
