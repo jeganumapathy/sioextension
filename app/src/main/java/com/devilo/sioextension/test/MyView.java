@@ -1,4 +1,4 @@
-package com.devilo.sioextension;
+package com.devilo.sioextension.test;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -94,7 +94,7 @@ public class MyView extends View implements SurfaceHolder.Callback {
     private float mX, mY;
     private static final float TOUCH_TOLERANCE = 4;
 
-    public  void touch_start(float x, float y) {
+    public void touch_start(float x, float y) {
         // mPath.reset();
         //mPath.moveTo(x, y);
         mX = x;
@@ -102,7 +102,7 @@ public class MyView extends View implements SurfaceHolder.Callback {
 
     }
 
-    public  void touch_start_inv(float x, float y) {
+    public void touch_start_inv(float x, float y) {
         // mPath.reset();
         //mPath.moveTo(x, y);
         mX = x;
@@ -115,20 +115,14 @@ public class MyView extends View implements SurfaceHolder.Callback {
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
         if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-            //mPath.quadTo(mX, mY, (x + mX)/2, (y + mY)/2);
             mX = x;
             mY = y;
         }
-        if(touch != null)
-        touch.callback(x,y);
+        if (touch != null)
+            touch.callback(x, y);
     }
 
     private void touch_up() {
-        //mPath.lineTo(mX, mY);
-        //commit the path to our offscreen
-        //mCanvas.drawPath(mPath, mPaint);
-        // kill this so we don't double draw
-        //mPath.reset();
     }
 
     @Override

@@ -27,15 +27,15 @@
         android:layout_height="wrap_content"
         android:text="Send Message" />
 
-    <com.devilo.sioextension.MyView
+    <com.devilo.sioextension.test.MyView
         android:id="@+id/view"
         android:layout_width="100dp"
-        android:layout_height="100dp"></com.devilo.sioextension.MyView>
+        android:layout_height="100dp"></com.devilo.sioextension.test.MyView>
 
-    <com.devilo.sioextension.MyView
+    <com.devilo.sioextension.test.MyView
         android:id="@+id/view1"
         android:layout_width="100dp"
-        android:layout_height="100dp"></com.devilo.sioextension.MyView>
+        android:layout_height="100dp"></com.devilo.sioextension.test.MyView>
 
 
 </LinearLayout>

@@ -103,8 +103,8 @@ public class SocketManager implements SocketEvent, SocketListener {
         try {
             Log.d("SOCKET MANAGER", "connecting to socket");
             if (!mSocket.connected()) {
-                    mSocket.off();
-                    mSocket.on(Socket.EVENT_CONNECT, onConnectMessage);
+                mSocket.off();
+                mSocket.on(Socket.EVENT_CONNECT, onConnectMessage);
                 mSocket.on(Socket.EVENT_DISCONNECT, onDisconnectMessage);
                 mSocket.connect();
             }
@@ -114,7 +114,7 @@ public class SocketManager implements SocketEvent, SocketListener {
     }
 
     public boolean isConnected() {
-        return isConnected;
+        return mSocket.connected();
     }
 
 
@@ -154,6 +154,11 @@ public class SocketManager implements SocketEvent, SocketListener {
     public void send(HashMap<String, String> map, String eventName) {
         JSONObject message = new JSONObject(map);
         mSocket.emit(eventName, message);
+    }
+
+    public void sendDirection() {
+        System.out.println("Connection should be established ");
+        mSocket.connect();
     }
 
     public void invokeCallBack(final String eventName, final Object args) {
