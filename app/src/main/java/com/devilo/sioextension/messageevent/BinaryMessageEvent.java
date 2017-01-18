@@ -1,14 +1,16 @@
 package com.devilo.sioextension.messageevent;
 
+
 import java.util.HashMap;
 
 /**
  */
-public class SendMessageEvent {
+public class BinaryMessageEvent {
 
     private String eventName;
 
-    private HashMap<String, String> messageObject;
+    private HashMap<String, Object> messageObject;
+
 
     public String getEventName() {
         return eventName;
@@ -19,11 +21,11 @@ public class SendMessageEvent {
     }
 
 
-    public HashMap<String, String> getMessageObject() {
+    public HashMap<String, Object> getMessageObject() {
         return messageObject;
     }
 
-    public void setParam(HashMap<String, String> messageObject) {
+    public void setMessageObject(HashMap<String, Object> messageObject) {
         this.messageObject = messageObject;
     }
 }

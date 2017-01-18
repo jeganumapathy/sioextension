@@ -45,7 +45,7 @@ public class ListGroup extends EventActivity {
         adapter = new ListAdatapter(this, data);
         list.setAdapter(adapter);
         messageEvent.setEventName(SocketManager.EVENT_TOTAL_GROUP);
-        messageEvent.setMessageObject(params);
+        messageEvent.setParam(params);
         EventBus.getDefault().post(messageEvent);
     }
 
@@ -54,6 +54,19 @@ public class ListGroup extends EventActivity {
     public void onMessageEvent(ReceviceMessageEvent event) {
         if (event.getEventName().equalsIgnoreCase(SocketEvent.EVENT_TOTAL_GROUP)) {
             Toast.makeText(getApplicationContext(), "EVENT_TOTAL_GROUP", Toast.LENGTH_LONG).show();
+            HashMap<Object, Object> objects = (HashMap<Object, Object>) event.getObjectsArray();
+            for (Object entry : objects.keySet()) {
+                System.out.println(entry.toString() + "/" + objects.get(entry));
+                if ("message".equalsIgnoreCase(entry.toString())) {
+                    HashMap<Object, Object> data = (HashMap<Object, Object>) objects.get(entry);
+                    for (Object key : data.keySet()) {
+                        ListData mListData = new ListData();
+                        mListData.setTitle(key.toString());
+                        this.data.add(mListData);
+                    }
+                }
+            }
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -67,7 +80,7 @@ public class ListGroup extends EventActivity {
         public ListAdatapter(Context context, ArrayList myList) {
             this.myList = myList;
             this.context = context;
-            inflater = LayoutInflater.from(this.context);
+            this.inflater = LayoutInflater.from(this.context);
         }
 
         @Override

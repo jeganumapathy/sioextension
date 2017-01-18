@@ -156,6 +156,14 @@ public class SocketManager implements SocketEvent, SocketListener {
         mSocket.emit(eventName, message);
     }
 
+
+    public void send(HashMap<String, Object> map, String eventName, Boolean isByte) {
+        JSONObject message = new JSONObject(map);
+        if (isByte) {
+            mSocket.emit(eventName, message);
+        }
+    }
+
     public void sendDirection() {
         System.out.println("Connection should be established ");
         mSocket.connect();

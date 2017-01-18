@@ -16,13 +16,12 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (isNetworkAvailable(context)) {
-            Log.d(TAG, "Connected to a network");
+            Log.d(TAG, "is internet connected ");
             if (!SocketService.isStarted()) {
                 context.startService(new Intent(context, SocketService.class));
             }
-
         } else {
-            Log.d(TAG, "Not Connected to a network");
+            Log.d(TAG, "is internet not connected ");
         }
     }
 
