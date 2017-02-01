@@ -63,6 +63,9 @@ public class SocketManager implements SocketEvent, SocketListener {
             }
             mSocket = IO.socket(ip);
             mSocket.io().reconnection(true);
+            mSocket.io().reconnectionDelay(1000);
+            mSocket.io().reconnectionDelayMax(1000);
+            mSocket.io().reconnectionAttempts(10);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
