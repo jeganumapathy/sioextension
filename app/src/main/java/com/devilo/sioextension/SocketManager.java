@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import io.socket.client.IO;
+import io.socket.client.Manager;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 

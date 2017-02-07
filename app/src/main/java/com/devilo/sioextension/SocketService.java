@@ -28,7 +28,7 @@ public class SocketService extends Service {
 
     public static SocketService service;
     private static SocketManager manager;
-    private  String ip = SocketConstant.SOCKET_IP_NAMESPACE;
+    private String ip = SocketConstant.SOCKET_IP_NAMESPACE;
     private ActiveSocketDispatcher dispatcher;
     public static final String KEY_FOR_EXTRA = "EXTRA";
 
@@ -50,9 +50,10 @@ public class SocketService extends Service {
     public void onMessageEvent(SendMessageEvent event) {
         manager.send(event.getMessageObject(), event.getEventName());
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(BinaryMessageEvent event) {
-        manager.send(event.getMessageObject(), event.getEventName(),true);
+        manager.send(event.getMessageObject(), event.getEventName(), true);
     }
 
     @Override
@@ -83,6 +84,7 @@ public class SocketService extends Service {
             me.setEventName(eventName);
             me.setObjectsArray(response);
             if (eventName.equalsIgnoreCase(Socket.EVENT_CONNECT)) {
+                Toast.makeText(getApplicationContext(), "Socket event connected ", Toast.LENGTH_LONG).show();
             }
             dispatcher.addwork(me);
         }

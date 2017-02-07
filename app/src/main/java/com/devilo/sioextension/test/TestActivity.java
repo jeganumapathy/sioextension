@@ -67,7 +67,6 @@ public class TestActivity extends EventActivity {
                 receiveText.setText("---------RECEIVE GROUP MESSAGE IN-----------" + dif);
             } else if (event.getEventName().equalsIgnoreCase(SocketEvent.EVENT_SEND_BINARY)) {
                 receiveText.setText("---------RECEIVE BINARY IN-----------");
-
             }
         }
 
@@ -122,8 +121,8 @@ public class TestActivity extends EventActivity {
                 Byte[] object = new Byte[42];
                 //startActivity(intent);
                 HashMap<String, Object> data = new HashMap<String, Object>();
-                data.put("id","fff");
-                data.put("binary",object);
+                data.put("id", "fff");
+                data.put("binary", object);
                 BinaryMessageEvent binaryMessageEvent = new BinaryMessageEvent();
                 binaryMessageEvent.setMessageObject(data);
                 binaryMessageEvent.setEventName(SocketManager.EVENT_SEND_BINARY);
